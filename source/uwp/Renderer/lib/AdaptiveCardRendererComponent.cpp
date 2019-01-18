@@ -127,6 +127,9 @@ namespace AdaptiveNamespace
             try
             {
                 m_xamlBuilder->BuildXamlTreeFromAdaptiveCard(adaptiveCard, &xamlTreeRoot, this, renderContext.Get());
+                ComPtr<IInspectable> cardAsInspectable;
+                renderedCard.As(&cardAsInspectable);
+                xamlTreeRoot->put_Tag(cardAsInspectable.Get());
                 renderedCard->SetFrameworkElement(xamlTreeRoot.Get());
             }
             catch (...)
